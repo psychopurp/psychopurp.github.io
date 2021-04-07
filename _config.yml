@@ -125,12 +125,12 @@ postInfo:
   readCount: true # 阅读次数.
 
 # emoji 支持
-# githubEmojis:
-#   enable: true
-#   className: github-emoji
-#   inject: true
-#   styles:
-#   customEmojis:
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
 
 menu:
   Index:
