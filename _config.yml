@@ -4,10 +4,10 @@
 
 # Site
 title: Psychopurp
-subtitle: ''
-description: ''
+subtitle: '灵魂小狗之家'
+description: '我还要去完成应做之事。'
 keywords:
-author: John Doe
+author: psychopurp
 language: en
 timezone: ''
 
@@ -116,13 +116,6 @@ permalink_pinyin:
   separator: '-' # default: '-'
 
 
-postInfo:
-  date: true
-  update: false
-  wordCount: true # 设置文章字数统计为 true.
-  totalCount: true # 设置站点文章总字数统计为 true.
-  min2read: true # 阅读时长.
-  readCount: true # 阅读次数.
 
 # emoji 支持
 githubEmojis:
@@ -132,22 +125,4 @@ githubEmojis:
   styles:
   customEmojis:
 
-menu:
-  Index:
-    url: /
-    icon: fas fa-home
-  Tags:
-    url: /tags
-    icon: fas fa-tags
-  Categories:
-    url: /categories
-    icon: fas fa-bookmark
-  Archives:
-    url: /archives
-    icon: fas fa-archive
-  About:
-    url: /about
-    icon: fas fa-user-circle
-  Friends:
-    url: /friends
-    icon: fas fa-address-book
+
