@@ -317,9 +317,9 @@ livere:
 # To use it, activate the configuration item and set appId and appKey.
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
-  enable: false
-  appId:
-  appKey:
+  enable: true
+  appId: Mhbgi6XEAHikEz0aKW0IztPA-gzGzoHsz
+  appKey: EKdskIFRXvGa9PoqD9eLY689
   notify: false
   verify: false
   visitor: true
@@ -334,7 +334,7 @@ valine:
 # MiniValine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 # See: https://github.com/MiniValine/MiniValine
 minivaline:
-  enable: true
+  enable: false
   # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el] 选项）  
   # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
   # 下面是一个例子：
