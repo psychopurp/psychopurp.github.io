@@ -2,7 +2,7 @@
 title: 开始写博客的第一天
 date: 2021-04-09 14:07:17
 top: true
-cover: true
+cover: false
 categories: Markdown
 keywords: 第一天
 summary: 大四最后一个学期，今后准备开始写博客啦！
