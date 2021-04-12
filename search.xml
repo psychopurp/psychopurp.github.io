@@ -1,6 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2021百度校招+后端开发面试</title>
+    <url>/2021/04/12/baidu-interview/</url>
+    <content><![CDATA[<p>大四上学期一直在字节跳动实习，期间也没参加其他公司的秋招，今年四月份想再看看春招有没有更好的机会，前几天在一个 Golang 交流群里看到了一个百度的机会，是一个不加班，而且用 golang 的团队。于是直接给那个邮箱投了简历，第二天就给我打来了电话，约了下周一的面试。</p>
+<hr>
+<h1 id="一面-技术面（90-分钟左右）"><a href="#一面-技术面（90-分钟左右）" class="headerlink" title="一面 技术面（90 分钟左右）"></a>一面 技术面（90 分钟左右）</h1><p>一面让我下载了他们的工作平台：如流（类似飞书），使用此软件来进行视频面试。面试官很专业，问题主要分为项目，计算机基础，算法等部分，最后给了我面试评价，以及让我问了一些问题。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>最开始自我介绍，我大概介绍了下学校和专业，以及去年的实习经历和实习所做的一些工作。</p>
+<h3 id="1-项目相关"><a href="#1-项目相关" class="headerlink" title="1.项目相关"></a>1.项目相关</h3><p>项目相关问题都是根据我实习工作来提问的</p>
+<ol>
+<li>你做项目遇到的最难的问题是什么？（以前没咋思考过这个问题，就说了一个做的比较复杂的项目）</li>
+<li>rocket mq 选择某个组件详细介绍原理？（讲了 broker,producer,consumer 相关一些联系</li>
+<li>rocket mq 如何保证消息传递？</li>
+<li>consumer 能否知道自己消费到哪里了？</li>
+<li>redis 基础数据结构？使用过哪些？有几种数据持久化方案？RDB 和 AOF 区别？</li>
+</ol>
+<h3 id="2-计算机基础"><a href="#2-计算机基础" class="headerlink" title="2.计算机基础"></a>2.计算机基础</h3><ol>
+<li>进程和线程的关系？</li>
+<li>如何查找 CPU 占用资源高的进程？如何查看端口占用情况？<br>讲了 linux 的 top，lsof -i，netstat -nltp 相关的命令。</li>
+<li>如何查找僵尸进程？<br>这个记得有个 linux 命令可以查询，但是面试没想起来</li>
+<li>TCP 三次握手是怎样进行的？</li>
+<li>TCP 为什么是可靠的传输协议？拥塞控制介绍？</li>
+<li>HTTP 常见状态码？</li>
+<li>HTTP 和 HTTPS 有什么区别？HTTPS 的连接过程？是对称加密还是非对称加密？<br>https 的原理和区别回答出来了，但是 SSL 层认证的详细过程记得不清楚，大致讲了一下，结果最后不确定是对称加密还是非对称加密 😓</li>
+<li>HTTP2.0 和 HTTP1.0 的区别？<br>这两个区别好久前看过，回答的不太好。</li>
+<li>从输入网址到获得页面的过程？DNS 是怎么进行查询的？<br>DNS 讲了使用递归查询。记得也有点模糊了。</li>
+<li>如何实现分片下载和分片上传？<br>还好之前自己写过分片下载，知道原理，这块回答的好。</li>
+<li>数据库索引引擎有哪些？有什么区别？<br>数据库问的都是 mysql 相关的。讲了 innodb 和 myisam,和一些基本区别。</li>
+<li>数据库的四种隔离级别？如何实现可重复读？MVCC 介绍原理？<br>隔离级别都讲出来了，实现可重复度回答了 mvcc，但 mvcc 原理没答出来。</li>
+<li>为什么索引引擎使用 B+树而不是二叉树？使用二叉树为什么会效率低？<br>B+树的话扁平 IO 次数少，而且命中索引后可以读入大块数据到内存，二叉树因为结构导致 IO 次数非常高。</li>
+</ol>
+<h3 id="3-算法"><a href="#3-算法" class="headerlink" title="3.算法"></a>3.算法</h3><p>因为简历里有写过使用前缀树解决了一个实际业务问题，面试官就让我在线写一个前缀树。我就共享屏幕用 golang 写了一个，不过费了点时间。写完跑了测试并给他讲解了下思路。</p>
+<h4 id="实现一个前缀树"><a href="#实现一个前缀树" class="headerlink" title="实现一个前缀树"></a>实现一个前缀树</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> Node <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Prefix <span class="token builtin">int32</span>
+    Full   <span class="token builtin">string</span>
+    IsEnd  <span class="token builtin">bool</span>
+    Nodes  <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int32</span><span class="token punctuation">]</span><span class="token operator">*</span>Node
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Trie <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Root <span class="token operator">*</span>Node
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>t <span class="token operator">*</span>Trie<span class="token punctuation">)</span> <span class="token function">Insert</span><span class="token punctuation">(</span>item <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> t<span class="token punctuation">.</span>Root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		t<span class="token punctuation">.</span>Root <span class="token operator">=</span> <span class="token operator">&amp;</span>Node<span class="token punctuation">{</span>
+			Prefix<span class="token punctuation">:</span> <span class="token function">int32</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			Full<span class="token punctuation">:</span>   <span class="token string">""</span><span class="token punctuation">,</span>
+			IsEnd<span class="token punctuation">:</span>  <span class="token boolean">false</span><span class="token punctuation">,</span>
+			Nodes<span class="token punctuation">:</span>  <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int32</span><span class="token punctuation">]</span><span class="token operator">*</span>Node<span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	node <span class="token operator">:=</span> t<span class="token punctuation">.</span>Root
+	<span class="token keyword">for</span> index<span class="token punctuation">,</span> char <span class="token operator">:=</span> <span class="token keyword">range</span> item <span class="token punctuation">{</span>
+		<span class="token comment">// 如果存在则获取子节点</span>
+		<span class="token keyword">if</span> tmp<span class="token punctuation">,</span> exist <span class="token operator">:=</span> node<span class="token punctuation">.</span>Nodes<span class="token punctuation">[</span>char<span class="token punctuation">]</span><span class="token punctuation">;</span> exist <span class="token punctuation">{</span>
+			node <span class="token operator">=</span> tmp
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token comment">// 如果不存在则插入,并进入子节点</span>
+			node<span class="token punctuation">.</span>Nodes<span class="token punctuation">[</span>char<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">&amp;</span>Node<span class="token punctuation">{</span>
+				Prefix<span class="token punctuation">:</span> char<span class="token punctuation">,</span>
+				Full<span class="token punctuation">:</span>   item<span class="token punctuation">[</span><span class="token number">0</span> <span class="token punctuation">:</span> index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+				IsEnd<span class="token punctuation">:</span>  <span class="token boolean">false</span><span class="token punctuation">,</span>
+				Nodes<span class="token punctuation">:</span>  <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int32</span><span class="token punctuation">]</span><span class="token operator">*</span>Node<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			<span class="token punctuation">}</span>
+			<span class="token comment">// 如果是最后一个字符，则设置结束符号</span>
+			<span class="token keyword">if</span> index <span class="token operator">==</span> <span class="token function">len</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">{</span>
+				node<span class="token punctuation">.</span>Nodes<span class="token punctuation">[</span>char<span class="token punctuation">]</span><span class="token punctuation">.</span>IsEnd <span class="token operator">=</span> <span class="token boolean">true</span>
+			<span class="token punctuation">}</span>
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span>Nodes<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>t <span class="token operator">*</span>Trie<span class="token punctuation">)</span> <span class="token function">PrefixSearch</span><span class="token punctuation">(</span>prefix <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>Node <span class="token punctuation">{</span>
+	node <span class="token operator">:=</span> t<span class="token punctuation">.</span>Root
+	<span class="token keyword">var</span> result <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>Node
+
+	<span class="token comment">// 先找出该prefix 的子节点</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> char <span class="token operator">:=</span> <span class="token keyword">range</span> prefix <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> tmp<span class="token punctuation">,</span> exist <span class="token operator">:=</span> node<span class="token punctuation">.</span>Nodes<span class="token punctuation">[</span>char<span class="token punctuation">]</span><span class="token punctuation">;</span> exist <span class="token punctuation">{</span>
+			node <span class="token operator">=</span> tmp
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">if</span> node <span class="token operator">==</span> t<span class="token punctuation">.</span>Root <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> result
+	<span class="token punctuation">}</span>
+
+	<span class="token function">DFS</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token operator">&amp;</span>result<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 找出该子节点下所有IsEnd 节点</span>
+<span class="token keyword">func</span> <span class="token function">DFS</span><span class="token punctuation">(</span>node <span class="token operator">*</span>Node<span class="token punctuation">,</span> result <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> node <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> node<span class="token punctuation">.</span>Nodes <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> n<span class="token punctuation">.</span>IsEnd <span class="token punctuation">{</span>
+			<span class="token operator">*</span>result <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span><span class="token operator">*</span>result<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		<span class="token function">DFS</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">GenerateTrie</span><span class="token punctuation">(</span>data <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">*</span>Trie <span class="token punctuation">{</span>
+
+	trie <span class="token operator">:=</span> <span class="token function">new</span><span class="token punctuation">(</span>Trie<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> data <span class="token punctuation">{</span>
+		trie<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> trie
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	data <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token string">"hex"</span><span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">,</span> <span class="token string">"war"</span><span class="token punctuation">,</span> <span class="token string">"water"</span><span class="token punctuation">}</span>
+	trie <span class="token operator">:=</span> <span class="token function">GenerateTrie</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+	nodes <span class="token operator">:=</span> trie<span class="token punctuation">.</span><span class="token function">PrefixSearch</span><span class="token punctuation">(</span><span class="token string">"w"</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> nodes <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%v "</span><span class="token punctuation">,</span> n<span class="token punctuation">.</span>Full<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+
+	nodes <span class="token operator">=</span> trie<span class="token punctuation">.</span><span class="token function">PrefixSearch</span><span class="token punctuation">(</span><span class="token string">"he"</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> nodes <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%v "</span><span class="token punctuation">,</span> n<span class="token punctuation">.</span>Full<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">//fmt.Println("hello",nodes)</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h2><p>最后面试官告诉我需要再看一下 https 加解密实现的流程，以及 mysql mvcc 如何实现可重复读隔离级别的相关内容。面试官很 nice，最后自己把 https 的加解密给我讲解了一下。</p>
+<p>然后我提问了一些他们团队所做的事相关的问题就结束了</p>
+]]></content>
+      <categories>
+        <category>面经</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>后端开发</tag>
+        <tag>百度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开始写博客的第一天</title>
     <url>/2021/04/09/first-day/</url>
     <content><![CDATA[<p>今年是大四的最后一个学期，之前没有自己写博客的想法，直到最近感觉自己的知识很碎片化，也很容易忘记之前学过的一些东西，故有了写博客来记录的想法，不仅仅用来记录学到的知识，也会记录一些面试经历，工作体验，有趣的项目分享，算法学习还有一些生活上的碎碎念。</p>
