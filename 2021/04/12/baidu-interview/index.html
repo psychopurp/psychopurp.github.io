@@ -451,21 +451,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-04-12
+                    2021-04-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    5 Min
+                    7 Min
                 </div>
                 
 
@@ -488,7 +488,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>大四上学期一直在字节跳动实习，期间也没参加其他公司的秋招，今年四月份想再看看春招有没有更好的机会，前几天在一个 Golang 交流群里看到了一个百度的机会，是一个不加班，而且用 golang 的团队。于是直接给那个邮箱投了简历，第二天就给我打来了电话，约了下周一的面试。</p>
+                <p>大四上学期一直在字节跳动实习，期间也没参加其他公司的秋招，今年四月份想再看看春招有没有更好的机会，前几天在一个 Golang 交流群里看到了一个百度的机会，看介绍是个 955，而且挺核心的一个技术团队，技术栈也是 go。于是直接给那个邮箱投了简历，第二天就给我打来了电话，约了下周一的面试。</p>
 <hr>
 <h1 id="一面-技术面（90-分钟左右）"><a href="#一面-技术面（90-分钟左右）" class="headerlink" title="一面 技术面（90 分钟左右）"></a>一面 技术面（90 分钟左右）</h1><p>一面让我下载了他们的工作平台：如流（类似飞书），使用此软件来进行视频面试。面试官很专业，问题主要分为项目，计算机基础，算法等部分，最后给了我面试评价，以及让我问了一些问题。</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>最开始自我介绍，我大概介绍了下学校和专业，以及去年的实习经历和实习所做的一些工作。</p>
@@ -502,18 +502,45 @@
 </ol>
 <h3 id="2-计算机基础"><a href="#2-计算机基础" class="headerlink" title="2.计算机基础"></a>2.计算机基础</h3><ol>
 <li>进程和线程的关系？</li>
-<li>如何查找 CPU 占用资源高的进程？如何查看端口占用情况？<br>讲了 linux 的 top，lsof -i，netstat -nltp 相关的命令。</li>
-<li>如何查找僵尸进程？<br>这个记得有个 linux 命令可以查询，但是面试没想起来</li>
+<li>如何查找 CPU 占用资源高的进程？如何查看端口占用情况？<blockquote>
+<p>讲了 linux 的 top，lsof -i，netstat -nltp 相关的命令。</p>
+</blockquote>
+</li>
+<li>如何查找僵尸进程？<blockquote>
+<p>这个记得有个 linux 命令可以查询，但是面试没想起来</p>
+</blockquote>
+</li>
 <li>TCP 三次握手是怎样进行的？</li>
 <li>TCP 为什么是可靠的传输协议？拥塞控制介绍？</li>
 <li>HTTP 常见状态码？</li>
-<li>HTTP 和 HTTPS 有什么区别？HTTPS 的连接过程？是对称加密还是非对称加密？<br>https 的原理和区别回答出来了，但是 SSL 层认证的详细过程记得不清楚，大致讲了一下，结果最后不确定是对称加密还是非对称加密 😓</li>
-<li>HTTP2.0 和 HTTP1.0 的区别？<br>这两个区别好久前看过，回答的不太好。</li>
-<li>从输入网址到获得页面的过程？DNS 是怎么进行查询的？<br>DNS 讲了使用递归查询。记得也有点模糊了。</li>
-<li>如何实现分片下载和分片上传？<br>还好之前自己写过分片下载，知道原理，这块回答的好。</li>
-<li>数据库索引引擎有哪些？有什么区别？<br>数据库问的都是 mysql 相关的。讲了 innodb 和 myisam,和一些基本区别。</li>
-<li>数据库的四种隔离级别？如何实现可重复读？MVCC 介绍原理？<br>隔离级别都讲出来了，实现可重复度回答了 mvcc，但 mvcc 原理没答出来。</li>
-<li>为什么索引引擎使用 B+树而不是二叉树？使用二叉树为什么会效率低？<br>B+树的话扁平 IO 次数少，而且命中索引后可以读入大块数据到内存，二叉树因为结构导致 IO 次数非常高。</li>
+<li>HTTP 和 HTTPS 有什么区别？HTTPS 的连接过程？是对称加密还是非对称加密？<blockquote>
+<p>https 的原理和区别回答出来了，但是 SSL 层认证的详细过程记得不清楚，大致讲了一下，结果最后不确定是对称加密还是非对称加密 😓</p>
+</blockquote>
+</li>
+<li>HTTP2.0 和 HTTP1.0 的区别？<blockquote>
+<p>这两个区别好久前看过，回答的不太好。</p>
+</blockquote>
+</li>
+<li>从输入网址到获得页面的过程？DNS 是怎么进行查询的？<blockquote>
+<p>DNS 讲了使用递归查询。记得也有点模糊了。</p>
+</blockquote>
+</li>
+<li>如何实现分片下载和分片上传？<blockquote>
+<p>还好之前自己写过分片下载，知道原理，这块回答的好。</p>
+</blockquote>
+</li>
+<li>数据库索引引擎有哪些？有什么区别？<blockquote>
+<p>数据库问的都是 mysql 相关的。讲了 innodb 和 myisam,和一些基本区别。</p>
+</blockquote>
+</li>
+<li>数据库的四种隔离级别？如何实现可重复读？MVCC 介绍原理？<blockquote>
+<p>隔离级别都讲出来了，实现可重复读回答了 mvcc，但 mvcc 原理没答出来。</p>
+</blockquote>
+</li>
+<li>为什么索引引擎使用 B+树而不是二叉树？使用二叉树为什么会效率低？<blockquote>
+<p>B+树的话扁平 IO 次数少，而且命中索引后可以读入大块数据到内存，二叉树因为结构导致 IO 次数非常高。</p>
+</blockquote>
+</li>
 </ol>
 <h3 id="3-算法"><a href="#3-算法" class="headerlink" title="3.算法"></a>3.算法</h3><p>因为简历里有写过使用前缀树解决了一个实际业务问题，面试官就让我在线写一个前缀树。我就共享屏幕用 golang 写了一个，不过费了点时间。写完跑了测试并给他讲解了下思路。</p>
 <h4 id="实现一个前缀树"><a href="#实现一个前缀树" class="headerlink" title="实现一个前缀树"></a>实现一个前缀树</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
@@ -626,6 +653,33 @@
 
 <h2 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h2><p>最后面试官告诉我需要再看一下 https 加解密实现的流程，以及 mysql mvcc 如何实现可重复读隔离级别的相关内容。面试官很 nice，最后自己把 https 的加解密给我讲解了一下。</p>
 <p>然后我提问了一些他们团队所做的事相关的问题就结束了</p>
+<hr>
+<h1 id="二面-技术面（70-分钟左右）"><a href="#二面-技术面（70-分钟左右）" class="headerlink" title="二面 技术面（70 分钟左右）"></a>二面 技术面（70 分钟左右）</h1><p>周一刚面完，周二 HR 就找我约了周三的面试，也是同一个时间点，因为一面让我下去再看看 https 和 mysql 的 mvcc 相关内容，我怕二面又来问我这个，就好好准备了这两块内容，但二面没有问基础内容，全程聊了项目和工程，后面是共享屏幕来介绍我的个人项目和算法代码，最后讲了两道 leetcode hard 算法题。</p>
+<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p>二面问题基本围绕着我在简历上写的项目进行的，所以中间一些详细的问题就略过啦。</p>
+<h3 id="1-项目相关-1"><a href="#1-项目相关-1" class="headerlink" title="1.项目相关"></a>1.项目相关</h3><ol>
+<li>你做的项目是部署到了多少台机器？(这个应该是想问我做的项目的规模</li>
+<li>分布式系统中怎么实现幂等性？可靠性？</li>
+<li>redis 熟悉吗？有哪些基本数据结构？</li>
+<li>你用 go 写过并发程序吗？要怎么做？<blockquote>
+<p>这个应该是考察语言熟悉程度，回答了 sync.Mutex,sync.Map 之类的使用，以及并发程序需要注意的点。</p>
+</blockquote>
+</li>
+<li>如何给 go net/http 实现的接口添加一个中间件？</li>
+<li>如果让你设计一个中间件的功能你会使用什么数据结构？你会怎么实现？<blockquote>
+<p>之前学习 gin 框架 的时候模仿写过一个 web 框架，就介绍了这个项目中实现中间件的源码和思路。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-算法"><a href="#2-算法" class="headerlink" title="2.算法"></a>2.算法</h3><ol>
+<li>你最近刷过哪些算法题？来讲讲几个？<blockquote>
+<p>面试官应该是看了我的 github，刚好最近在研究两道 hard 级别的题，我就打开介绍了下我写的思路，优化的点，以及多种解决方法。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="最后总结-1"><a href="#最后总结-1" class="headerlink" title="最后总结"></a>最后总结</h2><ul>
+<li>二面是来考察我实际做项目的能力，以及我对语言的熟悉程度，很多点都是根据我在简历上写的经历来提问，比如：这么做是为了解决什么问题？如果 xxx，你怎么处理？有没有考虑 xxx 点？之类的。</li>
+<li>二面基本没有失误，自己也感觉发挥的很好，期间问的一些问题没理解面试官意思，面试官也不急不躁给我讲解，后面我问问题的环节就问了一些关于工作环境，团队规模之类的。面试体验也很好，心想应该没问题了，果然过了两小时 HR 就来跟我约周四的第三次面试了。</li>
+</ul>
 
                 
             </div>
@@ -1421,7 +1475,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.5k</span>&nbsp;字
+                class="white-color">2.1k</span>&nbsp;字
             
             
             
